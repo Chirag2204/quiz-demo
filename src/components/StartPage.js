@@ -11,9 +11,9 @@ const StartPage = ({ onStart }) => {
   };
 
   return (
-    <div style={{ 'margin-top': '100px'}}>
+    <div style={{ 'margin-top': '70px'}}>
       <h1>Welcome to the Quiz!</h1>
-       <div className="login-form" style={{'margin-top':'100px'}}>
+       <div className="login-form" style={{'margin-top':'50px'}}>
       <Form onSubmit={handleSubmit} className='py-3'>
                 <Form.Group controlId='email' className='py-3'>
                     <Form.Label>Email Address</Form.Label>

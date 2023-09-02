@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Alert, Button,Card,Col,Form, Row, Spinner } from 'react-bootstrap';
+import { Alert, Button, Card, Col, Form, Row, Spinner } from 'react-bootstrap';
 import axios from 'axios';
 
 const QuizPage =  ({ email,name}) => {
@@ -64,7 +64,7 @@ const QuizPage =  ({ email,name}) => {
 
   const handleNextQuestion = () => {
     handleQuestionNavigation(currentQuestion)
-    if(questions[currentQuestion].your_choice!='')handleQuestionAttempt(currentQuestion)
+    if(questions[currentQuestion].your_choice!=='')handleQuestionAttempt(currentQuestion)
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion((prevQuestion) => prevQuestion + 1);
       
@@ -111,50 +111,25 @@ const QuizPage =  ({ email,name}) => {
             </Col>
              
           </Row>
-          
-          <div style={{'width':'100%','margin-top':'10px'}} >
-              <Row style={{'text-align':'left'}}>
-                <Col xs={1}><button key='' className='overview-item visited' ></button></Col>
-                <Col xs={11} style={{ 'margin-left':'-10px'}}>Shows Question is visited but not answered or marked</Col>
-              </Row>
-              
-              <Row style={{'text-align':'left'}}>
-                <Col><button key='' className='overview-item '></button></Col>
-                <Col xs={11} style={{ 'margin-left':'-10px'}}>Shows Question is not visited</Col>
-              </Row>
-              
-              <Row style={{'text-align':'left'}}>
-                <Col><button key='' className='overview-item marked'></button></Col>
-                <Col xs={11} style={{ 'margin-left':'-10px'}}>Shows Question is marked for review</Col>
-              </Row>
-              
-              <Row style={{'text-align':'left'}}>
-                <Col><button key='' className='overview-item attempted'></button></Col>
-                <Col xs={11} style={{ 'margin-left':'-10px'}}>Shows Question is answered</Col>
-              </Row>
-              
+          <Row>
+          <Col xs={8}>
+          <div className="overview-panel" style={{ 'display':'flex','justify-content':'space-evenly','margin-top':'10px'}}>
+           
+               {questions?.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`overview-item ${visitedQuestions.includes(index) ? 'visited' : ''} ${
+                      attemptedQuestions.includes(index) ? 'attempted' : ''
+                    } ${markedQuestions.includes(index)?'marked':''}`}
+                    onClick={() => handleQuestionNavigation(index)}
+                  >
+                    {index + 1}
+                  </button>
+                 ))}
             </div>
-          
-          <div className="overview-panel">
-            <div style={{'width':'50%','display':'flex','justify-content':'space-between','margin-top':'50px'}}>
-        {questions?.map((_, index) => (
-          
-          <button
-            key={index}
-            className={`overview-item ${visitedQuestions.includes(index) ? 'visited' : ''} ${
-              attemptedQuestions.includes(index) ? 'attempted' : ''
-            } ${markedQuestions.includes(index)?'marked':''}`}
-            onClick={() => handleQuestionNavigation(index)}
-          >
-            {index + 1}
-          </button>
-        ))}
-              </div>
-      </div>
       
         <div style={{ 'text-align':'left','padding-left':'10px', 'font-size':'large'}}>
-        <h3>Question {currentQuestion + 1}</h3>
-            
+        <h3>Question {currentQuestion + 1}</h3>  
         <p>{questions[currentQuestion]?.question}</p>
         <Form>
           {questions[currentQuestion]?.options?.map(element => 
@@ -174,8 +149,36 @@ const QuizPage =  ({ email,name}) => {
         
         <Button onClick={handleNextQuestion} variant='success' style={{'margin-right':'20px','margin-top':'40px'}}>Next Question</Button>
         <Button onClick={() => handleQuestionMarkforReview(currentQuestion)} variant='warning' style={{'margin-left':'10px','margin-top':'40px'}}>Mark for review</Button>
+        
+              </div>
+              </Col>
+            <Col xs={4}>
+              <div style={{ 'width': '100%', 'margin-top': '10px' }} >
+                
+              <Row style={{'text-align':'left'}}>
+                <Col xs={1}><button key='' className='overview-item visited' ></button></Col>
+                <Col xs={11} style={{ 'margin-left':'-10px'}}>Question is visited but not answered or marked</Col>
+              </Row>
+              
+              <Row style={{'text-align':'left'}}>
+                <Col xs={1}><button key='' className='overview-item '></button></Col>
+                <Col xs={11} style={{ 'margin-left':'-10px'}}>Question is not visited</Col>
+              </Row>
+              
+              <Row style={{'text-align':'left'}}>
+                <Col xs={1}><button key='' className='overview-item marked'></button></Col>
+                <Col xs={11} style={{ 'margin-left':'-10px'}}>Question is marked for review</Col>
+              </Row>
+              
+              <Row style={{'text-align':'left'}}>
+                <Col xs={1}><button key='' className='overview-item attempted'></button></Col>
+                <Col xs={11} style={{ 'margin-left':'-10px'}}>Question is answered</Col>
+              </Row>
+              
+            </div>
+            </Col>
             
-        </div>
+          </Row>
         </>) : (<>
           <h2>Here is Quiz Report {name}</h2>
           
