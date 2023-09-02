@@ -155,22 +155,22 @@ const QuizPage =  ({ email,name}) => {
             <Col xs={4}>
               <div style={{ 'width': '100%', 'margin-top': '10px' }} >
                 
-              <Row style={{'text-align':'left'}}>
+              <Row style={{'text-align':'left','margin-top':'10px'}}>
                 <Col xs={1}><button key='' className='overview-item visited' ></button></Col>
                 <Col xs={11} style={{ 'margin-left':'-10px'}}>Question is visited but not answered or marked</Col>
               </Row>
               
-              <Row style={{'text-align':'left'}}>
+              <Row style={{'text-align':'left','margin-top':'10px'}}>
                 <Col xs={1}><button key='' className='overview-item '></button></Col>
                 <Col xs={11} style={{ 'margin-left':'-10px'}}>Question is not visited</Col>
               </Row>
               
-              <Row style={{'text-align':'left'}}>
+              <Row style={{'text-align':'left','margin-top':'10px'}}>
                 <Col xs={1}><button key='' className='overview-item marked'></button></Col>
                 <Col xs={11} style={{ 'margin-left':'-10px'}}>Question is marked for review</Col>
               </Row>
               
-              <Row style={{'text-align':'left'}}>
+              <Row style={{'text-align':'left','margin-top':'10px'}}>
                 <Col xs={1}><button key='' className='overview-item attempted'></button></Col>
                 <Col xs={11} style={{ 'margin-left':'-10px'}}>Question is answered</Col>
               </Row>
